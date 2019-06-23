@@ -10,16 +10,18 @@ function bundle() {
     rm hello.zip
     mvn clean package
 
-    docker run -v `pwd`:/work oracle/graalvm-ce:1.0.0-rc16 \
-        native-image \
-		    --verbose \
-            -jar work/target/springboot-on-lambda-0.0.1.jar \
-            -H:Name=hello \
-            -H:+ReportUnsupportedElementsAtRuntime \
-            -H:-AllowVMInspection \
-            -R:-InstallSegfaultHandler
+    
+    native-image \
+        --verbose \
+        -jar target/springboot-on-lambda-0.0.1.jar \
+        -H:Name=hello \
+        -H:+ReportUnsupportedElementsAtRuntime \
+        -H:-AllowVMInspection \
+        -R:-InstallSegfaultHandler
 
-    chmod +x bootstrap
+    chmod 755 bootstrap
+    chmod 755 hello
+    chmod 755 function.sh
 
     zip hello.zip bootstrap hello function.sh
 
@@ -40,7 +42,7 @@ aws lambda create-function \
     --function-name nativesb \
     --timeout 10 \
     --zip-file fileb://hello.zip \
-    --handler function.handler \
+    --handler function.sh \
     --runtime provided \
     --role ${LAMBDA_ROLE_ARN}
 
