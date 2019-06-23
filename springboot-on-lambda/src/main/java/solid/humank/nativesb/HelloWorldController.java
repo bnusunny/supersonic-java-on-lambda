@@ -1,4 +1,4 @@
-package solid.humank.springbootonlambda;
+package solid.humank.nativesb;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
