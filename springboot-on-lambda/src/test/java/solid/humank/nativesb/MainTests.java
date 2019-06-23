@@ -1,13 +1,14 @@
 package solid.humank.nativesb;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MainTests {
+public class MainTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+
 	}
 
 }
