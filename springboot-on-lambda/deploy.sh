@@ -8,18 +8,20 @@ BUNDLEDIR=target/bundle
 function bundle() {
     rm -f response.txt
     rm hello.zip
-    mvn clean package -DskipTests=true -Dnative=true -Dnative-image.docker-build=true
+    mvn clean package
 
-    native-image --no-server \
-        -jar target/springboot-on-lambda-0.0.1.jar \
-        -H:Name=hello \
-        -H:+ReportUnsupportedElementsAtRuntime \
-        -H:-AllowVMInspection \
-        -R:-InstallSegfaultHandler
+    docker run -v `pwd`:/work oracle/graalvm-ce:1.0.0-rc16 \
+        native-image \
+		    --verbose \
+            -jar work/target/springboot-on-lambda-0.0.1.jar \
+            -H:Name=hello \
+            -H:+ReportUnsupportedElementsAtRuntime \
+            -H:-AllowVMInspection \
+            -R:-InstallSegfaultHandler
 
     chmod +x bootstrap
 
-    zip hello.zip bootstrap hello
+    zip hello.zip bootstrap hello function.sh
 
     echo deploy aws-graal.zip to AWS Lambda
 
@@ -38,7 +40,7 @@ aws lambda create-function \
     --function-name nativesb \
     --timeout 10 \
     --zip-file fileb://hello.zip \
-    --handler hello \
+    --handler function.handler \
     --runtime provided \
     --role ${LAMBDA_ROLE_ARN}
 
