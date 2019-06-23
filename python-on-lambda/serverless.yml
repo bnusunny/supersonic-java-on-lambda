@@ -1,0 +1,18 @@
+
+service: python-on-lambda # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: python3.7
+
+  stage: dev
+  region: ap-northeast-1
+
+functions:
+  hello:
+    handler: handler.hello
+
+    events:
+      - http:
+          path: hello
+          method: get
