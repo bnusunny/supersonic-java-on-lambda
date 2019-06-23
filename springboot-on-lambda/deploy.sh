@@ -7,13 +7,21 @@ BUNDLEDIR=target/bundle
 
 function bundle() {
     rm -f response.txt
-
+    rm hello.zip
     mvn clean package -DskipTests=true -Dnative=true -Dnative-image.docker-build=true
 
-    mkdir -p ${BUNDLEDIR}
-    cp -r bootstrap ${APPDIR}/*-runner  ${BUNDLEDIR}
-    chmod 755 ${BUNDLEDIR}/bootstrap
-    cd ${BUNDLEDIR} && zip -q function.zip bootstrap function.sh *-runner ; cd -
+    native-image --no-server \
+        -jar target/springboot-on-lambda-0.0.1.jar \
+        -H:Name=hello \
+        -H:+ReportUnsupportedElementsAtRuntime \
+        -H:-AllowVMInspection \
+        -R:-InstallSegfaultHandler
+
+    chmod +x bootstrap
+
+    zip hello.zip bootstrap hello
+
+    echo deploy aws-graal.zip to AWS Lambda
 
 }
 
@@ -29,8 +37,8 @@ echo Creating function
 aws lambda create-function \
     --function-name nativesb \
     --timeout 10 \
-    --zip-file fileb://${BUNDLEDIR}/function.zip \
-    --handler function.sh \
+    --zip-file fileb://hello.zip \
+    --handler hello \
     --runtime provided \
     --role ${LAMBDA_ROLE_ARN}
 
