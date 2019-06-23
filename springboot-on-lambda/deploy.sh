@@ -19,13 +19,10 @@ function bundle() {
         -H:-AllowVMInspection \
         -R:-InstallSegfaultHandler
 
-    chmod 755 bootstrap
-    chmod 755 hello
-    chmod 755 function.sh
+    chmod 755 bootstrap hello function.sh
+    zip -q hello.zip bootstrap hello function.sh
 
-    zip hello.zip bootstrap hello function.sh
-
-    echo deploy aws-graal.zip to AWS Lambda
+    echo deploy hello.zip to AWS Lambda
 
 }
 
