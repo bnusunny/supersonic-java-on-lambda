@@ -1,0 +1,19 @@
+service: quarkus-on-lambda 
+
+provider:
+  name: aws
+  runtime: provided
+
+  stage: dev
+  region: ap-northeast-1
+
+package:
+  artifact: target/bundle/function.zip
+
+functions:
+  hello:
+    handler: function.sh
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+

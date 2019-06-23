@@ -1,0 +1,19 @@
+service: java-on-lambda 
+
+provider:
+  name: aws
+  runtime: java8
+
+  stage: dev
+  region: ap-northeast-1
+
+package:
+  artifact: target/hello-dev.jar
+
+functions:
+  hello:
+    handler: com.serverless.Handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
