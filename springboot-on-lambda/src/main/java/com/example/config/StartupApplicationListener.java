@@ -37,7 +37,7 @@ import org.springframework.util.ClassUtils;
 public class StartupApplicationListener
 		implements ApplicationListener<ApplicationReadyEvent>, ApplicationContextAware {
 
-	public static final String MARKER = "Benchmark app started";
+	public static final String MARKER = "StartupApplicationListener - Benchmark app started";
 
 	private static Log logger = LogFactory.getLog(StartupApplicationListener.class);
 

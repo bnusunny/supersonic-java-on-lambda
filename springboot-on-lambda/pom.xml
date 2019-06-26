@@ -25,7 +25,7 @@
 		<spring-boot.version>2.2.0.M2</spring-boot.version>
 		<thin.version>1.0.22.RELEASE</thin.version>
 		<jmh.version>1.21</jmh.version>
-		<start-class>com.example.demo.DemoApplication</start-class>
+		<start-class>com.example.micro.MicroApplication</start-class>
 	</properties>
 
 	<dependencies>

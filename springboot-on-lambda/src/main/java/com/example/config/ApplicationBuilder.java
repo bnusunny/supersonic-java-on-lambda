@@ -39,7 +39,7 @@ import reactor.netty.http.server.HttpServer;
 public class ApplicationBuilder {
 
 	private static final String SHUTDOWN_LISTENER = "SHUTDOWN_LISTENER";
-	public static final String STARTUP = "Benchmark app started";
+	public static final String STARTUP = "ApplicationBuilder - Benchmark app started";
 	private static Log logger = LogFactory.getLog(StartupApplicationListener.class);
 
 	public static void start(ConfigurableApplicationContext context) {
@@ -58,7 +58,7 @@ public class ApplicationBuilder {
 
 		HttpHandler handler = WebHttpHandlerBuilder.applicationContext(context).build();
 		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
-		HttpServer httpServer = HttpServer.create().host("localhost").port(
+		HttpServer httpServer = HttpServer.create().host("127.0.0.1").port(
 				context.getEnvironment().getProperty("server.port", Integer.class, 8080))
 				.handle(adapter);
 		httpServer.bindUntilJavaShutdown(Duration.ofSeconds(60), callback(callback));

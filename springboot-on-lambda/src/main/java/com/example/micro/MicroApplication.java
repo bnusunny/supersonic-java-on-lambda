@@ -43,6 +43,7 @@ import reactor.core.publisher.Mono;
 public class MicroApplication {
 
 	public static void main(String[] args) throws Exception {
+		System.out.println(System.getProperty("java.net.preferIPv4Stack"));
 		long t0 = System.currentTimeMillis();
 		GenericApplicationContext context = new MicroApplication().run();
 		ApplicationBuilder.start(context, b -> {
