@@ -91,7 +91,8 @@ Compute the classpath using the `graal` profile so that we can work around some 
 
 ```
 $ CP=`java -jar target/micro-0.0.1-SNAPSHOT.jar --thin.classpath --thin.profile=graal`
-$ CP=$CP:$MAVEN_HOME/repository/org/springframework/spring-orm/5.1.7.RELEASE/spring-orm-5.1.7.RELEASE.jar:$MAVEN_HOME/repository/org/springframework/spring-jdbc/5.1.7.RELEASE/spring-jdbc-5.1.7.RELEASE.jar:$MAVEN_HOME/repository/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar
+$ M2_REPO=$HOME/.m2/repository
+$ CP=$CP:$M2_REPO/org/springframework/spring-orm/5.1.7.RELEASE/spring-orm-5.1.7.RELEASE.jar:$MAVEN_HOME/org/springframework/spring-jdbc/5.1.7.RELEASE/spring-jdbc-5.1.7.RELEASE.jar:$M2_REPO/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar
 ```
 
 Then build an image:
