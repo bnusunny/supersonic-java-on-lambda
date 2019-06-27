@@ -12,7 +12,7 @@ package:
 
 functions:
   hello:
-    handler: function.sh
+    handler: micro-runner
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'

@@ -31,8 +31,7 @@ clearStreams
 
 echo Deleting old function
 aws lambda delete-function \
-    --function-name springboot-on-lambda \
-    --region us-east-1
+    --function-name springboot-on-lambda 
 
 echo Creating function
 aws lambda create-function \
@@ -41,21 +40,20 @@ aws lambda create-function \
     --zip-file fileb://${BUNDLEDIR}/function.zip \
     --handler micro-runner \
     --runtime provided \
-    --role ${LAMBDA_ROLE_ARN} \
-    --region us-east-1
+    --role ${LAMBDA_ROLE_ARN} 
 
 echo
-time aws lambda invoke --function-name springboot-on-lambda --region us-east-1 --payload '{"firstName":"James", "lastName": "Lipton"}' response.txt
+time aws lambda invoke --function-name springboot-on-lambda --payload '{"firstName":"James", "lastName": "Lipton"}' response.txt
 cat response.txt
 echo
 
 echo
-time aws lambda invoke --function-name springboot-on-lambda --region us-east-1 --payload '{"firstName":"James", "lastName": "Halpert"}' response.txt
+time aws lambda invoke --function-name springboot-on-lambda --payload '{"firstName":"James", "lastName": "Halpert"}' response.txt
 cat response.txt
 echo
 
 echo
-time aws lambda invoke --function-name springboot-on-lambda --region us-east-1 --payload '{"firstName":"James", "lastName": "Jamm"}' response.txt
+time aws lambda invoke --function-name springboot-on-lambda --payload '{"firstName":"James", "lastName": "Jamm"}' response.txt
 cat response.txt
 echo
 
