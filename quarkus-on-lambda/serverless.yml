@@ -3,10 +3,13 @@ service: quarkus-on-lambda
 provider:
   name: aws
   runtime: provided
-
   stage: dev
   region: ap-northeast-1
-
+  endpointType: REGIONAL
+  tracing:
+    apiGateway: true
+    lambda: true
+    
 package:
   artifact: target/bundle/function.zip
 

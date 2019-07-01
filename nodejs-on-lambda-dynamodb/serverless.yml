@@ -1,0 +1,31 @@
+# serverless.yml
+
+service: nodejs-on-lambda-dynamodb
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  endpointType: REGIONAL
+  stage: dev
+  region: ap-northeast-1
+  tracing:
+    apiGateway: true
+    lambda: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - arn:aws:dynamodb:ap-northeast-1:373534280245:table/Quotes
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'

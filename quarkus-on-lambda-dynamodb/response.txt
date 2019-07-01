@@ -1,0 +1,1 @@
+{"errorType":"software.amazon.awssdk.core.exception.SdkClientException","errorMessage":"Unable to execute HTTP request: java.lang.RuntimeException: Unexpected error: java.security.InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty"}

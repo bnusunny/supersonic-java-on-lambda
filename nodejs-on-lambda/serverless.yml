@@ -5,9 +5,13 @@ service: nodejs-on-lambda
 provider:
   name: aws
   runtime: nodejs10.x
+  endpointType: REGIONAL
   stage: dev
   region: ap-northeast-1
-
+  tracing:
+    apiGateway: true
+    lambda: true
+    
 functions:
   app:
     handler: index.handler
