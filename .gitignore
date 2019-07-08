@@ -30,3 +30,7 @@ hs_err_pid*
 # mvn execution file
 **/mvnw.cmd
 **/mvnw
+
+# vscode project setting files
+**/.project
+**/.settings/*
