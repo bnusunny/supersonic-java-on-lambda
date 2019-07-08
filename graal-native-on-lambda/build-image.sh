@@ -1,13 +1,15 @@
 #!/bin/sh
 
-./gradlew build
+gradle build
+
+# -H:+AllowVMInspection , this option is not work on aws lambda function, should disable it first.
 
 native-image --no-server \
         --class-path build/libs/aws.graal-1.0-SNAPSHOT.jar \
         -H:Name=aws-graal \
         -H:Class=sample.Main \
         -H:+ReportUnsupportedElementsAtRuntime \
-        -H:+AllowVMInspection \
+        -H:-AllowVMInspection \
         -R:-InstallSegfaultHandler
 
 
