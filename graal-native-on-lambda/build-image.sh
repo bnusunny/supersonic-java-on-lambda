@@ -3,6 +3,9 @@
 gradle build
 
 # -H:+AllowVMInspection , this option is not work on aws lambda function, should disable it first.
+# reference case discussion : 
+# https://github.com/oracle/graal/issues/841
+
 
 native-image --no-server \
         --class-path build/libs/aws.graal-1.0-SNAPSHOT.jar \
