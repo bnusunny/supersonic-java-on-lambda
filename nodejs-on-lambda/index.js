@@ -1,11 +1,11 @@
-// index.js
 
-const serverless = require('serverless-http');
-const express = require('express');
-const app = express();
+module.exports.handler = (event, context, callback) => {
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: "Hello world!",
+    }),
+  };
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-})
-
-module.exports.handler = serverless(app);
+  callback(null, response);
+};
