@@ -9,7 +9,7 @@ function bundle() {
 
     mkdir -p ${BUNDLEDIR}
     cp -r target/wiring-classes/bootstrap ${APPDIR}/*-runner  ${BUNDLEDIR}
-    sed -i 's/$RUNNER/$RUNNER -Djava.library.path=\/opt\/graalvm\/jre\/lib\/amd64 -Djavax.net.ssl.trustStore=\/opt\/graalvm\/jre\/lib\/security\/cacerts/g' bootstrap
+    sed -i 's/$RUNNER/$RUNNER -Djava.library.path=\/opt\/graalvm\/jre\/lib\/amd64 -Djavax.net.ssl.trustStore=\/opt\/graalvm\/jre\/lib\/security\/cacerts/g' ${BUNDLEDIR}/bootstrap
     chmod 755 ${BUNDLEDIR}/bootstrap
     cd ${BUNDLEDIR} && zip -q function.zip bootstrap *-runner ; cd -
 

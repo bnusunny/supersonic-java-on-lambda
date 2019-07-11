@@ -3,6 +3,9 @@ package com.antwerkz.quarkus.lambda;
 import javax.enterprise.context.ApplicationScoped;
 
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
+import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
+import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
@@ -12,14 +15,15 @@ import java.util.HashMap;
 @ApplicationScoped
 public class HelloGreeter {
 
-    private static DynamoDbClient ddb = DynamoDbClient.create();
+	private static DynamoDbClient ddb = DynamoDbClient.builder().region(Region.AP_NORTHEAST_1)
+			.credentialsProvider(EnvironmentVariableCredentialsProvider.create())
+			.httpClientBuilder(UrlConnectionHttpClient.builder()).build();
 
-    public String greet() {
-        return "Hello world!";
-    }
+	public String greet() {
+		return "Hello world!";
+	}
 
-
-    public String quote() {
+	public String quote() {
 		String itemID = "300";
 		String quote = "My opinions may have changed, but not the fact that I’m right.";
 		String table_name = "Quotes";
@@ -42,7 +46,7 @@ public class HelloGreeter {
 			System.exit(1);
 		}
 
-        return "item added.";
-    }
+		return "item added.";
+	}
 
 }

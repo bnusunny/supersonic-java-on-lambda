@@ -1,4 +1,4 @@
-service: quarkus-on-lambda-dynamodb 
+service: quarkus-on-lambda-dynamodb
 
 provider:
   name: aws

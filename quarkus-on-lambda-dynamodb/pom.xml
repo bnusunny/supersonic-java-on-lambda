@@ -11,7 +11,7 @@
 
     <properties>
         <maven.compiler.parameters>true</maven.compiler.parameters>
-        <quarkus.version>0.17.0</quarkus.version>
+        <quarkus.version>0.19.0</quarkus.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <surefire-plugin.version>2.22.0</surefire-plugin.version>
@@ -66,7 +66,11 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-amazon-dynamodb</artifactId>
-            <version>999-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>url-connection-client</artifactId>
+            <version>2.7.0</version>
         </dependency>
       </dependencies>
 
@@ -138,7 +142,6 @@
                                     <additionalBuildArgs>
                                         <additionalBuildArg>-R:-InstallSegfaultHandler</additionalBuildArg>
                                         <additionalBuildArg>-H:-AllowVMInspection</additionalBuildArg>
-                                        <additionalBuildArg>--delay-class-initialization-to-runtime=com.antwerkz.quarkus.lambda.HelloGreeter</additionalBuildArg>
                                     </additionalBuildArgs>
                                 </configuration>
                             </execution>
