@@ -1,0 +1,22 @@
+service: vertx-on-lambda
+
+provider:
+  name: aws
+  runtime: provided
+  stage: dev
+  region: ap-northeast-1
+  endpointType: REGIONAL
+  tracing:
+    apiGateway: true
+    lambda: true
+
+package:
+  artifact: target/myapp-0.0.1-SNAPSHOT-aws-function.zip
+
+functions:
+  hello:
+    handler: com.example.vertx.on.lambda.HelloWorldLambda
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
