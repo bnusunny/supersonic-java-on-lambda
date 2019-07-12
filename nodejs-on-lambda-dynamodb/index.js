@@ -1,38 +1,32 @@
 // index.js
 
-const serverless = require('serverless-http');
-const express = require('express');
-const app = express();
+const { DynamoDB } = require('@aws-sdk/client-dynamodb-v2-node');
+const ddb = new DynamoDB({ region: 'ap-northeast-1' });
 
-const AWS = require('aws-sdk');
-AWS.config.update({region: 'ap-northeast-1'});
-
-const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-})
-
-app.post('/quote', function (req, res) {
+module.exports.handler = (event, context, callback) => {
   var params = {
     TableName: 'Quotes',
     Item: {
-      'ID' : {S: '200'},
-      'quote' : {S: 'My opinions may have changed, but not the fact that I’m right.'}
+      'ID': { S: '200' },
+      'quote': { S: 'My opinions may have changed, but not the fact that I’m right.' }
     }
   };
-  
+
   // Call DynamoDB to add the item to the table
-  ddb.putItem(params, function(err, data) {
+  ddb.putItem(params, function (err, data) {
     if (err) {
       console.log("Error", err);
-      res.send("Error");
+      callback(null, {
+        statusCode: 400,
+        headers: { 'Content-Type': 'text/plain' },
+        body: 'Couldn\'t create the todo item.',
+      });
     } else {
       console.log("Success", data);
-      res.send("Success");
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(data),
+      });
     }
   });
-
-}) 
-
-module.exports.handler = serverless(app);
+};
