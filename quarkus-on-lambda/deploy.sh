@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source dump-aws-logs.sh
-
 APPDIR=target/
 BUNDLEDIR=target/bundle
 
