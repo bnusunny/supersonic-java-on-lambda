@@ -9,5 +9,6 @@ To run these examples, you should first install the following prerequisites:
 1. awscli 
 2. nodejs + npm 
 3. serverless framework
-4. jdk 1.8 
+4. jdk 8.0.212
+5. docker
 
