@@ -10,5 +10,6 @@ To run these examples, you should first install the following prerequisites:
 2. nodejs + npm 
 3. serverless framework
 4. jdk 8.0.212
-5. docker
+5. maven
+6. docker
 
