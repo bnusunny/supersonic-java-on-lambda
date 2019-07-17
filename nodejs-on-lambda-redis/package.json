@@ -12,7 +12,5 @@
   "dependencies": {
     "redis": "^2.8.0"
   },
-  "devDependencies": {
-    "serverless-stack-output": "^0.2.3"
-  }
+  "devDependencies": {}
 }

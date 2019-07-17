@@ -2,13 +2,6 @@
 
 service: nodejs-on-lambda-redis
 
-plugins:
-  - serverless-stack-output
-
-custom:
-  output:
-    file: stack.json
-
 provider:
   name: aws
   runtime: nodejs10.x

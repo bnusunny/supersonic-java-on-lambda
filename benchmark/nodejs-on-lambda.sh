@@ -1,7 +1,9 @@
 cd ../nodejs-on-lambda
 
+SERVICE_ENDPOINT=`sls info -v | grep ServiceEndpoint | cut -d" " -f2`
+
 for i in {1..100}
 do 
     sls deploy -f app --force > /dev/null
-    curl -s -o /dev/null -w  "%{time_starttransfer}\n" https://s0zqp57p8c.execute-api.ap-northeast-1.amazonaws.com/dev
+    curl -s -o /dev/null -w  "%{time_starttransfer}\n" $SERVICE_ENDPOINT
 done
