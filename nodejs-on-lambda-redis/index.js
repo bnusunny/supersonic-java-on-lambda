@@ -1,13 +1,14 @@
 
 const redis = require("redis");
 const redis_url = `redis://${process.env.REDIS_HOST}:6379/0` || "redis://localhost:6379/0"
-const client = redis.createClient(redis_url);
 
 console.log(`redis url is ${redis_url}`);
 
 module.exports.handler = (event, context, callback) => {
 
   console.log("handler begin");
+
+  const client = redis.createClient(redis_url);
 
   client.set("nodejs", "hello world", (err, data) => {
     client.quit();

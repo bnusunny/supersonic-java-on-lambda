@@ -12,6 +12,7 @@ target
 
 # Serverless directories
 .serverless
+stack.json
 
 # nodejs modules
 node_modules
