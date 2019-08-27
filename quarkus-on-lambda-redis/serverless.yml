@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: provided
   stage: dev
-  region: ap-northeast-1
+  region: us-east-1
   endpointType: REGIONAL
   tracing:
     apiGateway: true
@@ -20,12 +20,12 @@ functions:
       - http: ANY /
       - http: 'ANY {proxy+}'
     environment:
-      REDIS_HOST: demo.j5hprq.0001.apne1.cache.amazonaws.com
+      REDIS_HOST: demo.uhm99s.0001.use1.cache.amazonaws.com
     vpc:
       securityGroupIds:
-        - sg-61dbd018
+        - sg-e9d737a0
       subnetIds:
-        - subnet-1716355e
-        - subnet-2acaf602
-        - subnet-a0a834fb
+        - subnet-584fab3f
+        - subnet-c169bf8b
+        - subnet-867b76db
 

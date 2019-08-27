@@ -4,3 +4,4 @@
 /out
 *.zip
 aws-graal
+.classpath

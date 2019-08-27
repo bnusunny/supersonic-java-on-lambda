@@ -5,7 +5,7 @@ provider:
   runtime: java8
   endpointType: REGIONAL
   stage: dev
-  region: ap-northeast-1
+  region: us-east-1
   tracing:
     apiGateway: true
     lambda: true
