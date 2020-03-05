@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./application -Djavax.net.ssl.trustStore=./cacerts -Djava.library.path=.
